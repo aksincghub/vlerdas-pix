@@ -1,0 +1,22 @@
+{
+	"db": {
+		"connString":"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.41)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)))",
+		"username":"admin",
+		"password":"admin1234",
+		"pool":50,
+		"timeout":30000
+	},
+	"server": {
+		"port": 4001,
+		"host": "localhost"
+	},
+	"accessControl": {
+		"allowOrigin": "*",
+		"allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS"
+	},
+	"debug": true,
+	"stmt": {
+		"aun" : "SELECT TEXT as AUN FROM TEST WHERE TEST.TEST_ID=:1",
+		"aunEx" : "select d.DOMAIN_ID from MPI as m, DOMAIN_ID as d where m.SSN=:1 and m.CORRELATED_ID = d.CORRELATED_ID and d.DOMAIN = ‘HA.OSD.MIL/AHLTA’"
+	}
+}

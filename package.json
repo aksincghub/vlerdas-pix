@@ -1,0 +1,29 @@
+{
+  "name": "pix",
+  "version": "0.1.0",
+  "description": "Patient Identifier Cross Reference",
+  "keywords": [
+    "pix",
+    "mvi",
+    "cross reference",
+    "oracle"
+  ],
+  "author": "Julian Jewel <julian@julianjewel.com>",
+  "main": "./bin/server.js",
+  "scripts": {
+    "test": "node ./test.js"
+  },
+  "dependencies": {
+    "config": ">=0.4.30",
+    "express": ">=3.4.0",
+    "underscore": ">=1.5.2",
+	"generic-pool":"2.0.4",
+	"oracle": "0.3.4"
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/department-of-veterans-affairs/vlerdas-ecrud.git"
+  }
+}
