@@ -1,12 +1,13 @@
 {
-  "name": "pix",
-  "version": "0.1.0",
+  "name": "xref",
+  "version": "0.1.1",
   "description": "Patient Identifier Cross Reference",
   "keywords": [
     "pix",
     "mvi",
     "cross reference",
-    "oracle"
+    "oracle",
+	"xref"
   ],
   "author": "Julian Jewel <julian@julianjewel.com>",
   "main": "./bin/server.js",
