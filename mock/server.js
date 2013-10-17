@@ -7,6 +7,7 @@
 var express = require('express')
 var config = require('config');
 var _ = require('underscore');
+var S = require('string');
 // Export config, so that it can be used anywhere
 module.exports.config = config;
 // Connect to Oracle Database for Cross Reference
@@ -45,55 +46,22 @@ function createApp() {
 			app.use(express.errorHandler({ showStack: true, dumpExceptions: true }));
 		}
     });
-
+	
 	// Get the patient identifier cross-reference
-	app.get('/2.16.840.1.113883.4.1/1234567', function (req, res, next) {
-		res.header('Content-Type', 'application/json');
-		
-		var result = JSON.parse(identifier);
-		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + '7654321' + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.275" }');
-		var clientIdentifierArray = [] ;
-		clientIdentifierArray[0] = jsonToAdd;
-		result['identifier:Identifier']['identifier:CommonData']['vler:Client']['vler:ClientIdentifier'] = clientIdentifierArray;
-		
-		var resultArr = result['identifier:Identifier']['identifier:CommonData']['vler:Client']['vler:ClientIdentifier'];
-		_.each(resultArr, function(result, index) {
-			console.log('Result ID' + result['nc:IdentificationID']);
-			console.log('Result AA' + result['vler:AssigningAuthority']);
-		})
-		
-		res.send (result, 200);
-	});
-
-		// Get the patient identifier cross-reference
-	app.get('/2.16.840.1.113883.4.1/123123123', function (req, res, next) {
+	app.get('/2.16.840.1.113883.4.1/:ssn', function (req, res, next) {
 		res.header('Content-Type', 'application/json');
 		var result = JSON.parse(identifier);
-		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + '321321' + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.275" }');
-		var clientIdentifierArray = [] ;
-		clientIdentifierArray[0] = jsonToAdd;
-		result['identifier:Identifier']['identifier:CommonData']['vler:Client']['vler:ClientIdentifier'] = clientIdentifierArray;
+		var ssn = req.params.ssn;
+		var aun = 'UNKNOWN';
+		if(!_.isUndefined(ssn)) {
+			if(S(ssn).startsWith('6')) {
+				aun = 'AUN' + ssn;
+			} else if (S(ssn).startsWith('111111111')) {
+				aun = 'MULTIPLE';
+			}
+		}
 		
-		res.send (result, 200);
-	});
-
-	// Get the patient identifier cross-reference
-	app.get('/2.16.840.1.113883.4.1/1111111', function (req, res, next) {
-		res.header('Content-Type', 'application/json');
-		var result = JSON.parse(identifier);
-		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + 'MULTIPLE' + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.275" }');
-		var clientIdentifierArray = [] ;
-		clientIdentifierArray[0] = jsonToAdd;
-		result['identifier:Identifier']['identifier:CommonData']['vler:Client']['vler:ClientIdentifier'] = clientIdentifierArray;
-		res.send (result, 200);
-	});
-
-
-		// Get the patient identifier cross-reference
-	app.get('/2.16.840.1.113883.4.1/:identifier', function (req, res, next) {
-		res.header('Content-Type', 'application/json');
-		var result = JSON.parse(identifier);
-		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + 'UNKNOWN' + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.275" }');
+		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + aun + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.275" }');
 		var clientIdentifierArray = [] ;
 		clientIdentifierArray[0] = jsonToAdd;
 		result['identifier:Identifier']['identifier:CommonData']['vler:Client']['vler:ClientIdentifier'] = clientIdentifierArray;
