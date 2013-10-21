@@ -4,21 +4,60 @@
 		"username":"admin",
 		"password":"admin1234",
 		"pool":50,
-		"timeout":30000
+		"timeout":30000,
+		"retry" : {
+			"retries" : 2,
+			"factor" : 3,
+			"minTimeout" : 1000,
+			"maxTimeout" : 60000,
+			"randomize" : true
+		}
 	},
 	"server": {
 		"port": 5001,
 		"host": "localhost"
 	},
-	"accessControl": {
-		"allowOrigin": "*",
-		"allowMethods": "GET,POST,PUT,DELETE,HEAD,OPTIONS"
+	"secureServer": {
+		"port": 15002,
+		"host": "localhost",
+		"options" : {
+			"key": "config/server.key",
+			"cert": "config/server.crt"
+		}	
+	},
+	"accessControl.DISABLED": {
+		"testuser1": {
+			"accessKeyId": "testuser1",
+			"accessKeySecret": "pa$$w0rd1",
+			"allowMethods": "*"
+		},
+		"testuser2": {
+			"accessKeyId": "testuser2",
+			"accessKeySecret": "pa$$w0rd2",
+			"allowMethods": "POST"
+		}
+	},
+	"templates" : {
+		"identifierTemplate" : "./lib/identifier_template.json"
 	},
 	"debug": true,
+	"log" : {
+		"console" : {
+			"level" : "trace",
+			"colorize" : true,
+			"label" : "PIX",
+			"timestamp" : true
+		},
+		"file" : {
+			"level" : "trace",
+			"filename" : "lens.log"
+		}
+	},
 	"oids": {
 		"aun":"2.16.840.1.113883.3.275"
 	},
 	"stmt": {
-		"aun" : "select get_ahlta_un(:1) AUN from dual"
+		"aunx" : "select get_ahlta_un(:1) AUN from dual",
+		"aun" : "SELECT TEXT as AUN FROM TEST WHERE TEST.TEST_ID=:1" 
 	}
 }

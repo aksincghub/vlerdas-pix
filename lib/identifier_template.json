@@ -1,0 +1,19 @@
+{
+    "identifier:Identifier" : {
+        "-xmlns:s" : "http://niem.gov/niem/structures/2.0",
+        "-xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+        "-xmlns:identifier" : "http://vler.va.gov/vler/schemas/internal/identifier",
+        "-xmlns:nc" : "http://niem.gov/niem/niem-core/2.0",
+        "-xmlns:vler" : "http://va.gov/vler/schemas/vlerSupersetSchema/0.7/vler",
+        "identifier:CommonData" : {
+            "vler:Client" : {
+                "-s:id" : "client",
+                "vler:ClientIdentifier" : [{
+                        "nc:IdentificationID" : "UNKNOWN",
+                        "vler:AssigningAuthority" : "2.16.840.1.113883.3.275"
+                    }
+                ]
+            }
+        }
+    }
+}
