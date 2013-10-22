@@ -85,7 +85,7 @@ function createApp(pool) {
     var router = require('../lib/router')(pool);
 
     // Get the patient identifier cross-reference
-    app.get('/2.16.840.1.113883.4.1/:identifier', router.getCorrespondingIds);
+    app.get('/pix/v1/2.16.840.1.113883.4.1/:identifier', router.getCorrespondingIds);
 
     // Listen
     if (!_.isUndefined(config.server) || !_.isUndefined(config.secureServer)) {
