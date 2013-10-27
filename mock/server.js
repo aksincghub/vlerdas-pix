@@ -48,7 +48,7 @@ function createApp() {
     });
 	
 	// Get the patient identifier cross-reference
-	app.get('/2.16.840.1.113883.4.1/:ssn', function (req, res, next) {
+	app.get('/pix/v1/2.16.840.1.113883.4.1/:ssn', function (req, res, next) {
 		res.header('Content-Type', 'application/json');
 		var result = JSON.parse(identifier);
 		var ssn = req.params.ssn;
