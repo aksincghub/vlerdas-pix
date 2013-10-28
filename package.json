@@ -19,7 +19,9 @@
     "express": ">=3.4.0",
     "underscore": ">=1.5.2",
 	"generic-pool":"2.0.4",
-	"oracle": "0.3.4"
+	"oracle": "0.3.4",
+	"retry": "0.6.0",
+	"vcommons": "0.1.9"
   },
   "devDependencies": {
   },
