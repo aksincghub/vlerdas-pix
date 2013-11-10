@@ -147,6 +147,8 @@ function fixOptions(configOptions) {
 // Default exception handler
 process.on('uncaughtException', function (err) {
     logger.error('Caught exception: ' + err);
+    process.exit()
+
 });
 // Ctrl-C Shutdown
 process.on('SIGINT', function () {
@@ -158,7 +160,6 @@ process.on('exit', function (err) {
     logger.info("Exiting, Error:", err);
     logger.info('Destroying pool!');
     pool.drain(function () {
-
         pool.destroyAllNow();
     });
 });

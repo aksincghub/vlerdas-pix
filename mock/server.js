@@ -77,6 +77,7 @@ function createApp() {
 // Default exception handler
 process.on('uncaughtException', function (err) {
     console.log('Caught exception: ' + err);
+	process.exit( );
 });
 // Ctrl-C Shutdown
 process.on( 'SIGINT', function() {
