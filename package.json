@@ -1,6 +1,6 @@
 {
   "name": "xref",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Patient Identifier Cross Reference",
   "keywords": [
     "pix",
@@ -21,7 +21,7 @@
 	"generic-pool":"2.0.4",
 	"oracle": "0.3.4",
 	"retry": "0.6.0",
-	"vcommons": "0.1.9"
+	"vcommons": "0.1.10"
   },
   "devDependencies": {
   },
