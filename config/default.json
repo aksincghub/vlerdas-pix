@@ -3,7 +3,7 @@
 		"connString":"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.41)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=XE)))",
 		"username":"admin",
 		"password":"admin1234",
-		"pool":50,
+		"pool":10,
 		"timeout":30000,
 		"retry" : {
 			"retries" : 2,

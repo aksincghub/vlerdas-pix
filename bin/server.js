@@ -30,8 +30,25 @@ var https = require('https');
 var cluster = require("cluster");
 var numCPUs = require('os').cpus().length;
 
-logger.trace('Establishing pool with max:', config.db.pool);
-var pool = generic_pool.Pool({
+if (cluster.isMaster) {
+    // Fork workers.
+    for (var i = 0; i < numCPUs; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('online', function (worker) {
+        logger.info('A worker with #' + worker.id);
+    });
+    cluster.on('listening', function (worker, address) {
+        logger.info('A worker is now connected to ' + address.address + ':' + address.port);
+    });
+    cluster.on('exit', function (worker, code, signal) {
+        logger.info('worker ' + worker.process.pid + ' died');
+    });
+} else {
+    logger.info('Starting PIX Service...');
+	logger.trace('Establishing pool with max:', config.db.pool);
+	var pool = generic_pool.Pool({
         name : 'oracle',
         max : config.db.pool,
         create : function (callback) {
@@ -56,24 +73,6 @@ var pool = generic_pool.Pool({
         log : config.db.debug
 
     });
-
-if (cluster.isMaster) {
-    // Fork workers.
-    for (var i = 0; i < numCPUs; i++) {
-        cluster.fork();
-    }
-
-    cluster.on('online', function (worker) {
-        logger.info('A worker with #' + worker.id);
-    });
-    cluster.on('listening', function (worker, address) {
-        logger.info('A worker is now connected to ' + address.address + ':' + address.port);
-    });
-    cluster.on('exit', function (worker, code, signal) {
-        logger.info('worker ' + worker.process.pid + ' died');
-    });
-} else {
-    logger.info('Starting PIX Service...');
     createApp(pool);
 }
 // Create Express App
