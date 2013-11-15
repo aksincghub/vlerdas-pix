@@ -50,11 +50,11 @@
 		},
 		"file" : {
 			"level" : "trace",
-			"filename" : "lens.log"
+			"filename" : "pix.log"
 		}
 	},
 	"oids": {
-		"aun":"2.16.840.1.113883.3.275"
+		"aun":"2.16.840.1.113883.3.42.10002.1"
 	},
 	"stmt": {
 		"aunx" : "select get_ahlta_un(:1) AUN from dual",

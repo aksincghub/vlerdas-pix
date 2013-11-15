@@ -10,7 +10,7 @@
                 "-s:id" : "client",
                 "vler:ClientIdentifier" : [{
                         "nc:IdentificationID" : "UNKNOWN",
-                        "vler:AssigningAuthority" : "2.16.840.1.113883.3.275"
+                        "vler:AssigningAuthority" : "2.16.840.1.113883.3.42.10002.1"
                     }
                 ]
             }
