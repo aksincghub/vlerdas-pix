@@ -28,7 +28,7 @@ var identifier = '{'
         +'"vler:ClientIdentifier": ['
           +'{'
             +'"nc:IdentificationID": "UNKNOWN",'
-            +'"vler:AssigningAuthority": "2.16.840.1.113883.3.275"'
+            +'"vler:AssigningAuthority": "2.16.840.1.113883.3.42.10002.1"'
           +'}'
 		+']'
 	  +'}'
@@ -61,7 +61,7 @@ function createApp() {
 			}
 		}
 		
-		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + aun + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.275" }');
+		var jsonToAdd = JSON.parse( '{"nc:IdentificationID":"' + aun + '", "vler:AssigningAuthority":"2.16.840.1.113883.3.42.10002.1" }');
 		var clientIdentifierArray = [] ;
 		clientIdentifierArray[0] = jsonToAdd;
 		result['identifier:Identifier']['identifier:CommonData']['vler:Client']['vler:ClientIdentifier'] = clientIdentifierArray;
